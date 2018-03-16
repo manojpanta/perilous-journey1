@@ -1,6 +1,6 @@
 class LinkedList
 
-  attr_reader :head, :count
+  attr_reader :head, :count, :node_length
 
   def initialize
     @head = nil
@@ -30,12 +30,21 @@ class LinkedList
       nil
     elsif current.next_node.nil?
       sentence
-    else
+    elsif
+      length == @node_length
       until current.next_node.nil?
         current = current.next_node
         sentence.concat(", followed by the #{current.surname} family")
       end
       sentence
+    elsif
+      length = length -1
+      length.times do
+        current = current.next_node
+        sentence.concat(", followed by the #{current.surname} family")
+      end
+      sentence
+
     end
   end
 
@@ -67,14 +76,14 @@ class LinkedList
     end
   end
 
-  def find(position, length)
+  def find(position, length1)
     count = 0
     current = @head
-    until  count == position -1
+    until  count == position
       current = current.next_node
       count += 1
     end
-    to_string(current)
+    to_string(current, length1)
   end
 
 

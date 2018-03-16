@@ -82,7 +82,7 @@ class LinkedListTest < Minitest::Test
     list.append("Henderson")
     list.prepend("McKinney")
     list.insert(1, "Lawson")
-    assert_equal "The Brooks family", list.find(3, 1)
+    assert_equal "The Brooks family", list.find(2, 1)
   end
 
 

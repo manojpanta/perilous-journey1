@@ -6,13 +6,14 @@ class LinkedList
     @head = nil
     @count = 0
     @node_length = 0
+    @node_surname = []
   end
 
   def append(surname)
     @node_length += 1
     @count += 1
     current = @head
-    if @head == nil
+    if @head.nil?
       @head = Node.new(surname)
     else
       until current.next_node.nil?
@@ -22,29 +23,19 @@ class LinkedList
     end
   end
 
-
-
   def to_string(current = @head, length = @node_length)
     sentence = "The #{current.surname} family"
     if current.nil?
       nil
     elsif current.next_node.nil?
       sentence
-    elsif
-      length == @node_length
-      until current.next_node.nil?
+    else
+        length -= 1
+        length.times do
         current = current.next_node
         sentence.concat(", followed by the #{current.surname} family")
-      end
-      sentence
-    elsif
-      length = length -1
-      length.times do
-        current = current.next_node
-        sentence.concat(", followed by the #{current.surname} family")
-      end
-      sentence
-
+        end
+        sentence
     end
   end
 
@@ -66,7 +57,7 @@ class LinkedList
     if @head.nil?
       @head = Node.new(surname)
     else
-      until index = count -1
+      until index = count - 1
         current = current.next_node
         count += 1
       end
@@ -87,19 +78,28 @@ class LinkedList
   end
 
 
+  def include?(surname1, current = @head)
+    begin
+      if current.surname == surname1
+        return true
+      else
+        current = current.next_node
+        include?(surname1, current)
+      end
+    rescue NoMethodError
+      return false
+    end
+  end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  def pop
+    @node_length -= 1
+     current = @head
+     until current.next_node.next_node.nil?
+       current = current.next_node
+     end
+     surname = current.next_node.surname
+     current.next_node = nil
+     return "The #{surname} family has died of dysentery"
+  end
 
 end

@@ -19,7 +19,6 @@ class LinkedListTest < Minitest::Test
   def test_append_method
     list = LinkedList.new
     list.append("West")
-    # binding.pry
     assert_equal "West", list.head.surname
   end
 
@@ -33,7 +32,6 @@ class LinkedListTest < Minitest::Test
     list = LinkedList.new
     list.append("West")
     assert_equal 1, list.count
-
   end
 
   def test_for_to_string_method
@@ -49,7 +47,6 @@ class LinkedListTest < Minitest::Test
     list.append("Hardy")
     list.append("Panta")
 
-    # binding.pry
     assert_equal "Rhodes", list.head.surname
     assert_equal 3, list.count
     result = "The Rhodes family, followed by the Hardy family, followed by the Panta family"
@@ -80,16 +77,36 @@ class LinkedListTest < Minitest::Test
     list = LinkedList.new
     list.append("Brooks")
     list.append("Henderson")
+    list.append("Panta")
     list.prepend("McKinney")
     list.insert(1, "Lawson")
     assert_equal "The Brooks family", list.find(2, 1)
   end
 
+  def test_if_includes_works
+    list = LinkedList.new
+    list.append("Brooks")
+    list.append("Henderson")
+    list.append("Panta")
+    list.prepend("McKinney")
+    assert_equal true, list.include?("McKinney")
+    assert_equal false, list.include?("Nepa")
+  end
 
-
-
-
-
-
+  def test_if_pop_works
+    list = LinkedList.new
+    list.append("Lawson")
+    list.append("Brooks")
+    list.append("Henderson")
+    list.prepend("McKinney")
+    result1 = "The Henderson family has died of dysentery"
+    assert_equal result1, list.pop
+    result2 = "The Brooks family has died of dysentery"
+    assert_equal result2, list.pop
+    result3 = "The Lawson family has died of dysentery"
+    assert_equal result3, list.pop
+    result1 = "The McKinney family"
+    assert_equal result1, list.to_string
+  end
 
 end

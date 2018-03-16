@@ -1,12 +1,19 @@
+
+require './lib/node'
+
 class Node
-  attr_reader :surname, :next_node
+  attr_accessor :next_node
+  attr_reader :surname
 
   def initialize(surname)
-    @surname = surname
     @next_node = nil
+    @surname = surname
 
 
   end
+
+
+
 
 
 

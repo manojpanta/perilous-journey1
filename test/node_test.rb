@@ -1,6 +1,7 @@
 require './lib/node'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'pry'
 
 
 class NodeTest < Minitest::Test
@@ -18,6 +19,7 @@ class NodeTest < Minitest::Test
   def test_for_next_node
     node = Node.new("Burke")
     assert_equal nil, node.next_node
+    # binding.pry
   end
 
 
